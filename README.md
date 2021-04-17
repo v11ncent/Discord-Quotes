@@ -1,4 +1,4 @@
 # Contributors
-Vincent Corradetti and Brian Campana
+Vincent Corradetti
 # Purpose
-Sometimes we say funny things in Discord. We want to save those.
+Sometimes we say funny things in Discord. I want to save those.
