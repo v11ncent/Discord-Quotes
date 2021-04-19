@@ -13,55 +13,70 @@
 
 .grid-container {
   display: grid;
-  height: 100vh;
+  height: 99.55vh;
   width: 60vw;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 10fr 0.5fr;
   grid-template-areas:
   "header header header header"
-  "main main . sidebar"
+  "main main main main"
   "footer footer footer footer"
 }
 
 
 .item-a {
-  border: 1px solid white;
-  grid-area: header;
-  color: white;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  grid-area: header;
   height: 100%;
   width: 100%;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  
+  border: 1px solid white;
 }
 
 .item-b {
-  border: 1px solid red;
+  display: flex;
   grid-area: main;
-  color: white;
   height: 100%;
   width: 100%;
+  overflow: hidden;
+  
+  border: 1px solid red;
 }
 
-.item-c {
-  border: 1px solid blue;
-  grid-area: sidebar;
-  color: white;
-  height: 100%;
-  width: 100%;
-}
+
 
 .item-d {
-  border: 1px solid green;
+  display: flex;
   grid-area: footer;
-  color: white;
   height: 100%;
   width: 100%;
+  overflow: hidden;
+
+  background-color: rgba(124, 122, 122, 0.253);
+  border: 1px solid green;
 }
 
+.footer-bar {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(124, 122, 122, 0.253);
+  border: 1px solid white;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+}
 
 .imposter {
-  object-fit: fill;
-  max-height: 100%;
-  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }

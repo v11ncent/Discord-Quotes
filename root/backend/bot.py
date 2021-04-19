@@ -19,24 +19,28 @@ async def on_message(message):
         return
 
     if message_string.startswith('!quote'):
-        # checks validity
         await find_quote(message_string, channel)
+    
         
 # finds the quote inside the message
 async def find_quote(message, channel):
+    # do this before anything else so we don't waste memory
+    if message == '!quote':
+        await send_valid_message(channel)
+        return
+
     quote_dict = dict()
     find_list = ["\"", "“", "”"]
     found_count = 0
     inner_count = 0
     outer_count = 0
+    
     for i in find_list:
         # if we found 2 quotes already
         if found_count == 2:
             break
-
-        if i == message[7]:
+        if (i == message[7], first_quote := 7):
             found_count += 1
-            first_quote = message.find(i, 7, 8)
             for i in find_list:
                 if i in message[first_quote + 1:]:
                     found_count += 1
@@ -71,7 +75,7 @@ async def find_quote(message, channel):
 
 # sends validity message in case user enters invalid command structure
 async def send_valid_message(channel):
-    await channel.send("**Functionality**: !quote \"quote\"-Person")
+    await channel.send("**Functionality**: !quote **\"**quote**\"**-Person")
 
 
 # functionality to add to text file to save to a mock database or something
@@ -80,4 +84,4 @@ def add_quote(message):
 
 
 
-client.run('ODMwMzIxNDYzNzk3MzUwNDEx.YHE_Hw.UdQxY3b6Tx1z1FkYhyPV8S77si8')
+client.run('')
