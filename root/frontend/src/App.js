@@ -4,15 +4,15 @@ function App() {
   return (
     <div className='parent-grid-container'>
       <div className='grid-container'>
-        <div className='item-a'>
-          <img src={img} className='imposter' alt='amongus'></img>
+        <div className='header-container'>
+          <h1 className='header'>quotes.py</h1>
         </div>
-        <div className='item-b'>
-         
+        <div className='main-container'>
+          <div className='content'></div>
         </div>
-        <div className='item-d'>
-          <div className='footer-bar'>
-            <a className='link' href='https://github.com/vince1444'>@vince1444</a>
+        <div className='footer-container'>
+          <div className='footer'>
+            <a className='link' href='https://github.com/vince1444' target="_blank" rel="noopener noreferrer">@vince1444</a>
           </div>
         </div>
       </div>
