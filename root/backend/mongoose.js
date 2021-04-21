@@ -1,6 +1,5 @@
 // mongoose to send data to our database
 // https://mongoosejs.com/docs/
-
 const mongoose = require('mongoose');
 mongoose.connect('<database uri string>', 
                 {useNewUrlParser: true, useUnifiedTopology: true});

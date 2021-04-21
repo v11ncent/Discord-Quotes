@@ -6,23 +6,17 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-    print('>>Logged in as {0.user}<<'.format(client))
+    # print sends out data of type stream rather than string
+    # to get fast access from stdout use flush to force it into a string
+    print('>>Logged in as {0.user}<<'.format(client), flush=True)
 
 @client.event
 async def on_message(message):
-    # for readability
-    message_string = message.content
-    channel = message.channel
-
-    # if message.author == client.user:
-       # if message_string.startswith('['):
-        #    await message.pin()
-     #   return
-
-    if message_string.startswith('!quote'):
-        qdict = await find_quote(message_string, channel)
+    if message.content.startswith('!quote'):
+        qdict = await find_quote(message.content, message.channel)
         if qdict is not None:
-            await channel.send(qdict)
+            print('Successful.', flush=True)
+            await message.channel.send(f'Quote added. Go to >>localhost:3000<< to view.')
             await send_data(qdict)
 
         
@@ -37,8 +31,6 @@ async def find_quote(message, channel):
     list_length = len(find_list)
     firstq = None
     secondq = None
-    
-    print(f'Message: {message}')
     for index, item in enumerate(find_list):
         if firstq is not None and secondq is not None:
             break
