@@ -1,5 +1,3 @@
-import img from './amangus.PNG'
-
 function App() {
   return (
     <div className='parent-grid-container'>

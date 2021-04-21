@@ -1,6 +1,5 @@
 # import libraries
-import discord
-import requests
+import discord, requests, datetime
 
 client = discord.Client()
 
@@ -15,7 +14,6 @@ async def on_message(message):
     if message.content.startswith('!quote'):
         qdict = await find_quote(message.content, message.channel)
         if qdict is not None:
-            print('Successful.', flush=True)
             await message.channel.send(f'Quote added. Go to >>localhost:3000<< to view.')
             await send_data(qdict)
 
@@ -54,12 +52,14 @@ async def find_quote(message, channel):
     else:
         await send_valid_message(channel)
         return
-
+    
     # substring = string[start:end:step]
-    return {
+    x = {
         'quote': message[firstq + 1:secondq],
-        'person': person
+        'person': person,
+        'date': datetime.datetime.now().strftime('%Y/%m/%d %r')
     }
+    return x
     
      
 # sends validity message in case user enters invalid command structure
@@ -69,8 +69,9 @@ async def send_valid_message(channel):
 
 async def send_data(qdict):
     # change this to whatever Express's port is run on
-    res = requests.post('http://localhost:8080/', data=qdict)
-    print(res.text)
+    # json=data converts dict to json for server
+    res = requests.post('http://localhost:8080/', json=qdict)
+    print(res.json)
 
 
 # discord bot token

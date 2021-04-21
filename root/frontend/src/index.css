@@ -50,7 +50,7 @@
   background-color: #2c2f33;
   border-radius: 0.5vw;
   overflow: hidden;
-  
+  border: 2.5px solid white;
 }
 
 
@@ -67,7 +67,7 @@
   width: 100%;
   font-size: 1.8vh;
   letter-spacing: .3vh;
-  
+  background-color: transparent;
 }
 
 .header {
@@ -84,7 +84,6 @@
   height: 50%;
   justify-content: center;
   align-items: center;
-  
 }
 
 .link {
@@ -95,5 +94,6 @@
   background-color: transparent;
   text-decoration: none;
   color: white;
+  text-shadow: 1.5px 1.5px #738adb;
 }
 
