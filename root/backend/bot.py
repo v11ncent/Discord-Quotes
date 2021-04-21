@@ -1,5 +1,6 @@
 # import libraries
 import discord
+import sys
 
 client = discord.Client()
 
@@ -13,10 +14,10 @@ async def on_message(message):
     message_string = message.content
     channel = message.channel
 
-    if message.author == client.user:
-        if message_string.startswith('['):
-            await message.pin()
-        return
+    # if message.author == client.user:
+       # if message_string.startswith('['):
+        #    await message.pin()
+     #   return
 
     if message_string.startswith('!quote'):
         await find_quote(message_string, channel)
@@ -28,7 +29,7 @@ async def find_quote(message, channel):
     if message == '!quote':
         await send_valid_message(channel)
         return
-
+    
     quote_dict = dict()
     find_list = ["\"", "“", "”"]
     found_count = 0
@@ -64,12 +65,11 @@ async def find_quote(message, channel):
 
     # substring = string[start:end:step]
     # need to add functionality to save later
-    print(message[first_quote + 1:])
     quote_dict['quote'] = message[first_quote + 1:second_quote]
     quote_dict['person'] = person    
     quote_builder = f"[{quote_dict['quote']} - **{quote_dict['person']}**]"
-    print(f"QUOTE: {quote_builder}")
     await channel.send(quote_builder)
+    print(quote_dict['quote'])
     return
 
 
@@ -77,10 +77,6 @@ async def find_quote(message, channel):
 async def send_valid_message(channel):
     await channel.send("**Functionality**: !quote **\"**quote**\"**-Person")
 
-
-# functionality to add to text file to save to a mock database or something
-def add_quote(message):
-    pass
 
 
 
