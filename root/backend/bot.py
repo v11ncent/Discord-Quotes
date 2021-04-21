@@ -28,53 +28,51 @@ async def on_message(message):
         
 # finds the quote inside the message
 async def find_quote(message, channel):
-    # do this before anything else so we don't waste memory
+    # do this before anything else so we don't waste time
     if message == '!quote':
         await send_valid_message(channel)
         return
 
-    find_list = ["\"", "“", "”"]
-    found_count = 0
-    inner_count = 0
-    outer_count = 0
+    find_list = ["\"", "“", "”", "'"]
+    list_length = len(find_list)
+    firstq = None
+    secondq = None
     
-    for i in find_list:
-        # if we found 2 quotes already
-        if found_count == 2:
+    print(f'Message: {message}')
+    for index, item in enumerate(find_list):
+        if firstq is not None and secondq is not None:
             break
-        if (i == message[7], first_quote := 7):
-            found_count += 1
-            for i in find_list:
-                if i in message[first_quote + 1:]:
-                    found_count += 1
-                    second_quote = message.find(i, first_quote + 1)
+        if item == message[7]:
+            firstq = 7
+            for index, item in enumerate(find_list):
+                if item in message[firstq + 1:]:
+                    # firstq + 1 to find next occurrence
+                    secondq = message.index(item, firstq + 1)
                     break
-                else:
-                    inner_count += 1
-        else:
-            outer_count += 1
-
-    if outer_count == 3 or inner_count == 3:
-        await send_valid_message(channel)
-        return
-
+                elif index == list_length:
+                    await send_valid_message(channel)
+                    return
+        elif index == list_length:
+            await send_valid_message(channel)
+            return
+    
     # find the person
-    if message[second_quote + 1] == "-":
-        person = message[second_quote + 2:]
+    if message[secondq + 1] == "-":
+        person = message[secondq + 2:]
     else:
         await send_valid_message(channel)
         return
 
     # substring = string[start:end:step]
     return {
-        'quote': message[first_quote + 1:second_quote],
+        'quote': message[firstq + 1:secondq],
         'person': person
     }
     
      
 # sends validity message in case user enters invalid command structure
 async def send_valid_message(channel):
-    await channel.send("**Functionality**: !quote **\"**quote**\"**-Person")
+    await channel.send("Functionality: `!quote \"quote\"-Person`")
 
 
 async def send_data(qdict):
