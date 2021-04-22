@@ -55,9 +55,9 @@ async def find_quote(message, channel):
     
     # substring = string[start:end:step]
     x = {
-        'quote': message[firstq + 1:secondq],
-        'person': person,
-        'date': datetime.datetime.now().strftime('%Y/%m/%d %r')
+        "quote": message[firstq + 1:secondq],
+        "person": person,
+        "date": datetime.datetime.now().strftime('%Y/%m/%d %r')
     }
     return x
     

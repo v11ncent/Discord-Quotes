@@ -19,17 +19,15 @@ function server() {
 function bot() {
     const botProc = spawn('python', ['bot.py']);
     botProc.stdout.on('data', (data) => {
-        process.stdout.write(`Bot: ${data}`);
+        process.stdout.write(`${data}`);
     });
       
     botProc.stderr.on('data', (data) => {
-        console.error(`Bot err: ${data}`);
+        console.error(`Bot Error: ${data}`);
     }); 
 }
 
-function run() {
+(function run() {
     server();
     bot();
-}
-
-run();
+})();
