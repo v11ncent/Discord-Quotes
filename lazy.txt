@@ -1,3 +1,0 @@
-<img src={img} className='header-image' alt='header picture'></img>
-grid-template-columns: minxmax(0, 1fr) minxmax(0, 1fr) minxmax(0, 1fr) minxmax(0, 1fr);
-  grid-template-rows: minxmax(0, 1fr) minxmax(0, 1fr) minxmax(0, 1fr);
