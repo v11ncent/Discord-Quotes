@@ -3,7 +3,7 @@ function App() {
     <div className='parent-grid-container'>
       <div className='grid-container'>
         <div className='header-container'>
-          <h1 className='header'>quotes.py</h1>
+          <h1 className='header'>quote librarian</h1>
         </div>
         <div className='main-container'>
           <div className='content'></div>

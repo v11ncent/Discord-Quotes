@@ -35,7 +35,7 @@
   align-items: center;
   overflow: hidden;
   font-size: 3vh;
-  letter-spacing: 1.2vw;
+  letter-spacing: 0.8vw;
   
 }
 
@@ -52,8 +52,6 @@
   overflow: hidden;
   border: 2.5px solid white;
 }
-
-
 
 
 .footer-container {

@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
 // new schema
+// https://stackoverflow.com/questions/19627631/how-to-get-data-from-mongodb-using-mongoose
 const schema = new mongoose.Schema({
     quote: String,
     person: String,
     date: String
-})
+}, {collection: 'quotes'});
 
 // methods must be added before we construct our model
 schema.methods.print = function() {
