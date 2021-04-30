@@ -1,6 +1,6 @@
 const express = require('express');
 const Quote = require('./models/Quote');
-const axios = require('axios');
+const cors = require('cors'); // https://expressjs.com/en/resources/middleware/cors.html
 
 // primer on Router object 
 // https://levelup.gitconnected.com/guide-to-the-express-router-object-multiple-requests-and-middleware-9d5c99b2ade6
@@ -29,13 +29,15 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {
+router.get('/', cors(), async (req, res) => {
     console.log('Got request at url \'localhost:8080/\'');
     // pass it an empty {} filter so that it finds all
     // can filter out person by using {'person': vince}
     await Quote.find({}, (err, result) => {
         if (err) { console.error(err) }
-        else { res.json(result) }
+        else {
+            res.send(result);
+        }
     });
 });
 

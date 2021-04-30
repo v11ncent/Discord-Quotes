@@ -1,3 +1,5 @@
+import Quotes from './components/Quotes'
+
 function App() {
   return (
     <div className='parent-grid-container'>
@@ -7,6 +9,7 @@ function App() {
         </div>
         <div className='main-container'>
           <div className='content'></div>
+            <Quotes />
         </div>
         <div className='footer-container'>
           <div className='footer'>

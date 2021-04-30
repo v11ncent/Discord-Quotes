@@ -1,5 +1,5 @@
 // https://reactjs.org/docs/state-and-lifecycle.html
-import React, { useState, useEffect } from 'React';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function Quotes() {
@@ -20,7 +20,7 @@ function Quotes() {
         await axios.get('http://localhost:8080/')
         .then(response => {
             setData(response.data)
-            console.log(response.data);
+            console.log(response);
         })
         .catch(err => {
             console.error(`Error fetching data\n${err}`);
@@ -34,5 +34,13 @@ function Quotes() {
     if (loading) return 'Loading...'
     if (error) return 'Error...'
 
-    return data;
+    return (
+        <>
+            <h1 style={{color: 'white'}}>{data[9].quote}</h1>
+            <h1 style={{color: 'white'}}>{data[9].person}</h1>
+            <h1 style={{color: 'white'}}>{data[9].date}</h1>
+        </>
+    );
 }
+
+export default Quotes
