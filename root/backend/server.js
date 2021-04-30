@@ -11,8 +11,10 @@ mongoose.connect('',
 function run() {
     (function listen() {
         // app.use(express.json()) has to be first so it can parse json
+        app.use(express.text());
         app.use(express.json());
         app.use('/', routes);
+        app.use('/get4discord', routes);
         app.listen(port, () => {
             console.log(`Listening on port ${port}`);
         })

@@ -1,8 +1,7 @@
 const express = require('express');
 const Quote = require('./models/Quote');
 const axios = require('axios');
-const MongoClient = require('mongodb').MongoClient;
-const { Mongoose } = require('mongoose');
+
 
 const url = 'mongodb+srv://vince:4T8yNWkNI4Omoi5I@quotes.k39re.mongodb.net/quotes?retryWrites=true&w=majority'
 // primer on Router object 
@@ -25,7 +24,7 @@ router.post('/', async (req, res) => {
         const quote = req.body.quote;
         const person = req.body.person;
         const date = req.body.date;
-        const newQuote = new Quote({ quote: quote, person: person, date: date })
+        const newQuote = new Quote({ quote: quote, person: person, date: date });
         await newQuote.save();
         res.status(200).send('Quote saved to Db.');
     }
@@ -36,20 +35,23 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {
+
+
+router.get('/get4discord', async (req, res) => {  
     try
-    {
-        console.log('Got request');
-        const collection = await Quote.findOne({ person: 'a' });
-        console.log(collection);
+    {   
+        // console.log('Got request');
+        // when looking for GET query params, use req.query.<param> not req.body
+        // when I used JSON.stringify I think it added extra "" so remove
+        const personQuery = req.query.person;
+        const collection = await Quote.findOne({ person: personQuery});
+        res.send(collection);
     }
     catch (err)
     {
         console.error(err);
         res.status(500).send(err);
     }
-
-  
-})
+});
 
 module.exports = router;

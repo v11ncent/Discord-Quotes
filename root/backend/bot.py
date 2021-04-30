@@ -1,5 +1,5 @@
 # import libraries
-import discord, requests, datetime
+import discord, aiohttp, asyncio, datetime, json
 
 client = discord.Client()
 
@@ -11,21 +11,34 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    if message.content.startswith('!quote get'):
+        quote = await get_quote(message.content, message.channel)
+        x = json.loads(quote)
+        await message.channel.send(x)
     if message.content.startswith('!quote'):
         qdict = await search_msg_for_quote(message.content, message.channel)
         if qdict is not None:
             await message.channel.send(f'Quote added. Go to >>localhost:3000<< to view.')
             await send_data(qdict)
-    if message.content == '!get':
-        print('a', flush=True)
-        await get_data()
-        
-        
+    
+
+# gets quotes from person
+async def get_quote(message, channel):
+    # !quote get vince
+    if message == '!quote get' or message == '!quote get ':
+        await send_valid_message(channel, 1)
+        return
+    
+    person = message[10:].strip()
+    data = await get_data(person)
+    return data
+
+    
 # finds the quote inside the message
 async def search_msg_for_quote(message, channel):
     # do this before anything else so we don't waste time
     if message == '!quote':
-        await send_valid_message(channel)
+        await send_valid_message(channel, 0)
         return
 
     find_list = ["\"", "“", "”", "'"]
@@ -43,17 +56,17 @@ async def search_msg_for_quote(message, channel):
                     secondq = message.index(item, firstq + 1)
                     break
                 elif index == list_length:
-                    await send_valid_message(channel)
+                    await send_valid_message(channel, 0)
                     return
         elif index == list_length:
-            await send_valid_message(channel)
+            await send_valid_message(channel, 0)
             return
     
     # find the person
     if message[secondq + 1] == "-":
         person = message[secondq + 2:]
     else:
-        await send_valid_message(channel)
+        await send_valid_message(channel, 0)
         return
     
     # substring = string[start:end:step]
@@ -65,23 +78,26 @@ async def search_msg_for_quote(message, channel):
     return x
     
 
-# makes simple get request for testing
-async def get_data():
-    print('hi', flush=True)
-    res = requests.get('http://localhost:8080/')
-    print(res.json, flush=True)
-
-
 # sends validity message in case user enters invalid command structure
-async def send_valid_message(channel):
-    await channel.send("Functionality: `!quote \"quote\"-Person`")
+async def send_valid_message(channel, mode):
+    # searching for quote
+    if mode == 0:
+        await channel.send('Functionality: `!quote \"quote\"-Person`')
+    # searching for person
+    if mode == 1:
+        await channel.send('Functionality: `!quote get person`')
 
+    
+# makes simple get request for testing
+async def get_data(person):
+    # https://docs.aiohttp.org/en/stable/client_quickstart.html
+    # https://masnun.com/2015/11/20/python-asyncio-future-task-and-the-event-loop.html#:~:text=An%20event%20loop%20is%20a,pauses%20it%20and%20runs%20another.
+    async with aiohttp.ClientSession() as session:
+        params = {'person': person}
+        async with session.get('http://localhost:8080/get4discord', params=params) as resp:
+            return await resp.text()
+            
 
-async def send_data(qdict):
-    # change this to whatever Express's port is run on
-    # json=data converts dict to json for server
-    res = requests.post('http://localhost:8080/', json=qdict)
-    print(res.json, flush=True)
 
 
 # discord bot token
