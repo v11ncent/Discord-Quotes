@@ -7,7 +7,7 @@ client = discord.Client()
 async def on_ready():
     # print sends out data of type stream rather than string
     # to get fast access from stdout use flush to force it into a string
-    print('>>Logged in as {0.user}<<'.format(client), flush=True)
+    print('Logged in as {0.user}'.format(client), flush=True)
 
 @client.event
 async def on_message(message):
