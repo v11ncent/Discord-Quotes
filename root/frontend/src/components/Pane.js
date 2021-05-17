@@ -1,8 +1,9 @@
 // https://reactjs.org/docs/state-and-lifecycle.html
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Quote from './Quote';
 
-function Quotes() {
+function Pane() {
     // sets states and update state functions
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -36,11 +37,11 @@ function Quotes() {
 
     return (
         <>
-            <h1 style={{color: 'white'}}>{data[9].quote}</h1>
-            <h1 style={{color: 'white'}}>{data[9].person}</h1>
-            <h1 style={{color: 'white'}}>{data[9].date}</h1>
+            {data.map((element) => {
+                return <Quote quote={element.quote} person={element.person} date={element.date} />
+            })}
         </>
     );
 }
 
-export default Quotes
+export default Pane

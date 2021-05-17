@@ -1,7 +1,10 @@
 const express = require('express');
 const Quote = require('./models/Quote');
+const mongoose = require('mongoose');
 const cors = require('cors'); // https://expressjs.com/en/resources/middleware/cors.html
 
+mongoose.connect('',
+                { useNewUrlParser: true, useUnifiedTopology: true })
 // primer on Router object 
 // https://levelup.gitconnected.com/guide-to-the-express-router-object-multiple-requests-and-middleware-9d5c99b2ade6
 // a Router object just acts like middleware
@@ -14,10 +17,11 @@ const router = express.Router();
 // and then forwards the response to the route
 router.post('/', async (req, res) => {
     try 
-    {
-        const quote = req.body.quote;
-        const person = req.body.person;
-        const date = req.body.date;
+    {   
+        let x = JSON.parse(req.body);
+        const quote = x.quote;
+        const person = x.person;
+        const date = x.date;
         const newQuote = new Quote({ quote: quote, person: person, date: date });
         await newQuote.save();
         res.status(200).send('Quote saved to Db.');

@@ -1,4 +1,4 @@
-import Quotes from './components/Quotes'
+import Pane from './components/Pane';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
         </div>
         <div className='main-container'>
           <div className='content'></div>
-            <Quotes />
+            <Pane />
         </div>
         <div className='footer-container'>
           <div className='footer'>

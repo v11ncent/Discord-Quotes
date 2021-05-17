@@ -16,10 +16,11 @@ async def on_message(message):
         x = json.loads(quote)
         await message.channel.send(x)
     if message.content.startswith('!quote'):
-        qdict = await search_msg_for_quote(message.content, message.channel)
-        if qdict is not None:
-            await message.channel.send(f'Quote added. Go to >>localhost:3000<< to view.')
-            await send_data(qdict)
+        data = await search_msg_for_quote(message.content, message.channel)
+        if data is not None:
+            await message.channel.send(f'Quote added. Go to http://quotelibrarian.com/ to view.')
+            x = await send_data(data)
+            print(x, flush=True)
     
 
 # gets quotes from person
@@ -45,11 +46,13 @@ async def search_msg_for_quote(message, channel):
     list_length = len(find_list)
     firstq = None
     secondq = None
+    quote_start = 7
+
     for index, item in enumerate(find_list):
         if firstq is not None and secondq is not None:
             break
-        if item == message[7]:
-            firstq = 7
+        if item == message[quote_start]:
+            firstq = quote_start
             for index, item in enumerate(find_list):
                 if item in message[firstq + 1:]:
                     # firstq + 1 to find next occurrence
@@ -75,14 +78,14 @@ async def search_msg_for_quote(message, channel):
         'person': person,
         'date': datetime.datetime.now().strftime('%Y/%m/%d %r')
     }
-    return x
+    return json.dumps(x)
     
 
 # sends validity message in case user enters invalid command structure
 async def send_valid_message(channel, mode):
     # searching for quote
     if mode == 0:
-        await channel.send('Functionality: `!quote \"quote\"-Person`')
+        await channel.send('Functionality: `!quote \"quote\"-person`')
     # searching for person
     if mode == 1:
         await channel.send('Functionality: `!quote get person`')
@@ -96,9 +99,12 @@ async def get_data(person):
         params = {'person': person}
         async with session.get('http://localhost:8080/get4discord', params=params) as resp:
             return await resp.text()
-            
 
-
-
+# sends data to server
+async def send_data(data):
+    async with aiohttp.ClientSession() as session:
+        async with session.post('http://localhost:8080/', data=data) as resp:
+            return await resp.text()
+    
 # discord bot token
 client.run('')
