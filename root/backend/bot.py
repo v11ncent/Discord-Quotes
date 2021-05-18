@@ -16,29 +16,36 @@ async def on_message(message):
         x = json.loads(quote)
         await message.channel.send(x)
     if message.content.startswith('!quote'):
-        data = await search_msg_for_quote(message.content, message.channel)
+        data = await search_msg_for_quote(message)
+        print('a' + data, flush=True)
         if data is not None:
-            await message.channel.send(f'Quote added. Go to http://quotelibrarian.com/ to view.')
-            x = await send_data(data)
-            print(x, flush=True)
+            await message.channel.send(f'Quote added. Go to https://quotelibrarian.com/ to view.')
+            res = await send_data(data)
+            print(res, flush=True)
     
 
 # gets quotes from person
 async def get_quote(message, channel):
-    # !quote get vince
     if message == '!quote get' or message == '!quote get ':
         await send_valid_message(channel, 1)
         return
-    
     person = message[10:].strip()
     data = await get_data(person)
     return data
 
     
 # finds the quote inside the message
-async def search_msg_for_quote(message, channel):
+async def search_msg_for_quote(message_raw):
+    content = message_raw.content
+    channel = message_raw.channel
     # do this before anything else so we don't waste time
-    if message == '!quote':
+    if content == '!quote':
+        await send_valid_message(channel, 0)
+        return
+
+    # find if there is no mention
+    print(message_raw.mentions, flush=True)
+    if (len(message_raw.mentions) <= 0):
         await send_valid_message(channel, 0)
         return
 
@@ -51,12 +58,12 @@ async def search_msg_for_quote(message, channel):
     for index, item in enumerate(find_list):
         if firstq is not None and secondq is not None:
             break
-        if item == message[quote_start]:
+        if item == content[quote_start]:
             firstq = quote_start
             for index, item in enumerate(find_list):
-                if item in message[firstq + 1:]:
+                if item in content[firstq + 1:]:
                     # firstq + 1 to find next occurrence
-                    secondq = message.index(item, firstq + 1)
+                    secondq = content.index(item, firstq + 1)
                     break
                 elif index == list_length:
                     await send_valid_message(channel, 0)
@@ -65,18 +72,17 @@ async def search_msg_for_quote(message, channel):
             await send_valid_message(channel, 0)
             return
     
-    # find the person
-    if message[secondq + 1] == "-":
-        person = message[secondq + 2:]
+   
     else:
         await send_valid_message(channel, 0)
         return
     
     # substring = string[start:end:step]
     x = {
-        'quote': message[firstq + 1:secondq],
-        'person': person,
-        'date': datetime.datetime.now().strftime('%Y/%m/%d %r')
+        'quote': content[firstq + 1:secondq],
+        'person': message_raw.mentions[0].name,
+        'date': datetime.datetime.now().strftime('%Y/%m/%d %r'),
+        'avatarUrl': str(message_raw.mentions[0].avatar_url),
     }
     return json.dumps(x)
     
@@ -85,7 +91,7 @@ async def search_msg_for_quote(message, channel):
 async def send_valid_message(channel, mode):
     # searching for quote
     if mode == 0:
-        await channel.send('Functionality: `!quote \"quote\"-person`')
+        await channel.send('Functionality: `!quote \"quote\" @person`')
     # searching for person
     if mode == 1:
         await channel.send('Functionality: `!quote get person`')

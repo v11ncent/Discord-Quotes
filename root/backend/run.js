@@ -8,22 +8,22 @@ function server() {
     serverProc.stdout.on('data', (data) => {
         // console.log() is formatted version of process.stdout.write()
         // console.log() adds a \n
-        process.stdout.write(`Server: ${data}`);
+        process.stdout.write(`${(new Date()).toLocaleTimeString()} [Server]: ${data}`);
     });
       
     serverProc.stderr.on('data', (data) => {
-        console.error(`Server err: ${data}`);
+        console.error(`${(new Date()).toLocaleTimeString()} [Server Error]: ${data}`);
     });
 }
 
 function bot() {
     const botProc = spawn('python', ['bot.py']);
     botProc.stdout.on('data', (data) => {
-        process.stdout.write(`${data}`);
+        process.stdout.write(`${(new Date()).toLocaleTimeString()} [Bot]: ${data}`);
     });
       
     botProc.stderr.on('data', (data) => {
-        console.error(`Bot Error: ${data}`);
+        console.error(`${(new Date()).toLocaleTimeString()} [Bot Error]: ${data}}`);
     }); 
 }
 

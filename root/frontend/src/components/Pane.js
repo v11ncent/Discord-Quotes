@@ -36,11 +36,11 @@ function Pane() {
     if (error) return 'Error...'
 
     return (
-        <>
+        <ul>
             {data.map((element) => {
                 return <Quote quote={element.quote} person={element.person} date={element.date} />
             })}
-        </>
+        </ul>
     );
 }
 

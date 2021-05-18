@@ -3,7 +3,7 @@ import React from 'react';
 function Quote({quote, person, date}) {
     return (
         <div>
-            <h1 style={{border: 'solid 1px white'}}>{`${quote} - ${person} [${date}]`}</h1>
+            <li className='quote-list-element' style={{listStyleType: 'none'}}>{`${quote} - ${person} [${date}]`}</li>
         </div>
     );
 }

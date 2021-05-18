@@ -19,10 +19,12 @@ router.post('/', async (req, res) => {
     try 
     {   
         let x = JSON.parse(req.body);
-        const quote = x.quote;
-        const person = x.person;
-        const date = x.date;
-        const newQuote = new Quote({ quote: quote, person: person, date: date });
+        const newQuote = new Quote({ 
+            quote: x.quote, 
+            person: x.person, 
+            date: x.date, 
+            avatarUrl: x.avatarUrl 
+        });
         await newQuote.save();
         res.status(200).send('Quote saved to Db.');
     }
