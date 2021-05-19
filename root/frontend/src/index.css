@@ -96,10 +96,6 @@
   text-shadow: 1.5px 1.5px #738adb;
 }
 
-.quote-list-element {
-  border: solid 1px white;  
-}
-
 ::-webkit-scrollbar {
   height: 15px;
   border-radius: 10px;
@@ -117,3 +113,11 @@
   box-shadow: inset 3px 3px 5px 6px #141414;
 }
 
+li {
+  margin: 10px;
+}
+li::before {
+  width: 1px;
+  height: 1px;
+  list-style-image: url('https://www.google.com/url?sa=i&url=http%3A%2F%2Fingus.info%2Fstory-blog%2Fkeywording-your-images-for-stock-photography-websites&psig=AOvVaw260kOs_uiUcjAIOxtEoWo3&ust=1621527679560000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJCsxb2T1vACFQAAAAAdAAAAABAD')
+}

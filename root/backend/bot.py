@@ -1,6 +1,5 @@
 # import libraries
 import discord, aiohttp, asyncio, datetime, json
-
 client = discord.Client()
 
 @client.event
@@ -17,9 +16,8 @@ async def on_message(message):
         await message.channel.send(x)
     if message.content.startswith('!quote'):
         data = await search_msg_for_quote(message)
-        print('a' + data, flush=True)
         if data is not None:
-            await message.channel.send(f'Quote added. Go to https://quotelibrarian.com/ to view.')
+            await message.channel.send('Quote added at <https://quotelibrarian.com/>.')
             res = await send_data(data)
             print(res, flush=True)
     
@@ -44,7 +42,6 @@ async def search_msg_for_quote(message_raw):
         return
 
     # find if there is no mention
-    print(message_raw.mentions, flush=True)
     if (len(message_raw.mentions) <= 0):
         await send_valid_message(channel, 0)
         return

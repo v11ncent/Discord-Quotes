@@ -38,7 +38,12 @@ function Pane() {
     return (
         <ul>
             {data.map((element) => {
-                return <Quote quote={element.quote} person={element.person} date={element.date} />
+                return <Quote 
+                        quote={element.quote} 
+                        person={element.person} 
+                        date={element.date} 
+                        avatarUrl={element.avatarUrl}
+                        />
             })}
         </ul>
     );
