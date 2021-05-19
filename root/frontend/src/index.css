@@ -35,9 +35,6 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  font-size: 3vh;
-  letter-spacing: 0.8vw;
-  
 }
 
 .main-container {
@@ -46,12 +43,11 @@
   align-items: center;
   justify-self: center;
   height: 100%;
-  width: 65%;
+  width: 100%;
 
   background-color: #2c2f33;
   border-radius: 0.5vw;
-  overflow: auto;
-  border: 4px solid white;
+  overflow: scroll;
 }
 
 
@@ -75,6 +71,8 @@
   position: relative;
   bottom: 5%;
   color: white;
+  font-size: 400%;
+  letter-spacing: 0.8vw;
 }
 
 .footer {
@@ -96,28 +94,11 @@
   text-shadow: 1.5px 1.5px #738adb;
 }
 
-::-webkit-scrollbar {
-  height: 15px;
-  border-radius: 10px;
+.disable-scroll::-webkit-scrollbar {
+  width: 0px;
 }
 
-::-webkit-scrollbar-track {
-  border-radius: 10px;
-  -webkit-box-shadow: 3px 3px 5px 6px #2c2f33;
-  box-shadow:  3px 3px 5px 6px #2c2f33;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 3px 3px 5px 6px #141414;
-  box-shadow: inset 3px 3px 5px 6px #141414;
-}
-
-li {
-  margin: 10px;
-}
-li::before {
-  width: 1px;
-  height: 1px;
-  list-style-image: url('https://www.google.com/url?sa=i&url=http%3A%2F%2Fingus.info%2Fstory-blog%2Fkeywording-your-images-for-stock-photography-websites&psig=AOvVaw260kOs_uiUcjAIOxtEoWo3&ust=1621527679560000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJCsxb2T1vACFQAAAAAdAAAAABAD')
+li::marker {
+  size: 10%;
+  border-radius: 50%;
 }

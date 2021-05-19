@@ -1,21 +1,25 @@
 import React from 'react';
 
 function Quote({quote, person, date, avatarUrl}) {
+    // STYLES
+    // ========================================================================
+
     const divStyle = {
-        width: '75%',
-        height: '70%',
-        paddingLeft: '22%',
+        display: 'flex',
     }
-    const quoteStyle = {
-        color: 'white',
-        border: 'solid 2px white',
-        listStyleImage: `url(${avatarUrl})`,
+    const imgStyle = {
+        // something
     }
+
+    const h1Style = {
+        // something
+    }
+
+    // ========================================================================
     return (
         <div style={divStyle}>
-            <li style={quoteStyle}>
-                {`${quote} - ${person} [${date}]`}
-            </li>
+            <img src={avatarUrl} alt='discord avatar image'></img>
+            <h1>{`${quote} - ${person} [${date}]`}</h1>
         </div>
     );
 }

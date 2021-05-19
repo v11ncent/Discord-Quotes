@@ -32,19 +32,43 @@ function Pane() {
         })
     }
 
-    if (loading) return 'Loading...'
-    if (error) return 'Error...'
+    if (loading) return 'Loading...';
+    if (error) return 'Error...';
 
+    // STYLES
+    // ========================================================================
+
+    const ulStyle = {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        border: '2px solid red',
+    }
+
+    const liStyle = {
+        listStyle: 'none',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        width: '50vw',
+        border: '2px solid green',
+    }
+
+
+    // ========================================================================
+
+    // you don't need the nested return statement if you're not using curly braces
     return (
-        <ul>
-            {data.map((element) => {
-                return <Quote 
-                        quote={element.quote} 
-                        person={element.person} 
-                        date={element.date} 
+        <ul style={ulStyle}>
+            {data.map((element) => 
+                <li style={liStyle}>
+                    <Quote 
+                        quote={element.quote}
+                        person={element.person}
+                        date={element.date}
                         avatarUrl={element.avatarUrl}
-                        />
-            })}
+                    />       
+                </li>  
+            )}
         </ul>
     );
 }
