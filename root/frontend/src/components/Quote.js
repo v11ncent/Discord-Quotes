@@ -8,7 +8,10 @@ function Quote({quote, person, date, avatarUrl}) {
         display: 'flex',
     }
     const imgStyle = {
-        // something
+        height: '100px',
+        width: '100px',
+        borderRadius: '50%',
+        border: '2px solid grey',
     }
 
     const h1Style = {
@@ -18,7 +21,7 @@ function Quote({quote, person, date, avatarUrl}) {
     // ========================================================================
     return (
         <div style={divStyle}>
-            <img src={avatarUrl} alt='discord avatar image'></img>
+            <img style={imgStyle} src={avatarUrl} alt='discord avatar image'></img>
             <h1>{`${quote} - ${person} [${date}]`}</h1>
         </div>
     );

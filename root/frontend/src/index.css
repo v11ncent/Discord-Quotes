@@ -39,15 +39,14 @@
 
 .main-container {
   display: flex;
+  overflow: scroll;
   grid-area: main;
-  align-items: center;
-  justify-self: center;
   height: 100%;
   width: 100%;
-
+  align-content: center;
+  justify-content: center;
   background-color: #2c2f33;
   border-radius: 0.5vw;
-  overflow: scroll;
 }
 
 
