@@ -39,18 +39,18 @@ function Pane() {
     // ========================================================================
 
     const ulStyle = {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        border: '2px solid red',
+        width: '100%',
+        paddingLeft: '20px',
+        paddingRight: '20px',
+        overflow: 'scroll',
+        background: '#2c2f33',
+        border: '2px solid green',
     }
 
     const liStyle = {
         listStyle: 'none',
-        display: 'flex',
-        justifyContent: 'flex-start',
-        width: '50vw',
-        border: '2px solid green',
+        width: '100%',
+        height: '25%',
     }
 
 
@@ -59,7 +59,7 @@ function Pane() {
     // you don't need the nested return statement if you're not using curly braces
     return (
         <ul style={ulStyle}>
-            {data.map((element) => 
+            {data.map((element) =>
                 <li style={liStyle}>
                     <Quote 
                         quote={element.quote}
