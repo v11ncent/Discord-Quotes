@@ -7,6 +7,9 @@
        url('./fonts/Whitney/whitneylight.woff') format('woff');
 }
 
+* {
+  box-sizing: border-box;
+}
 
 :root {
   background: #141414;

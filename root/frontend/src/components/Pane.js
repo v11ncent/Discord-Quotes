@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Quote from './Quote';
+import discBackgroundImg from '../images/discord-background.png';
 
 function Pane() {
     // sets states and update state functions
@@ -43,8 +44,7 @@ function Pane() {
         paddingLeft: '20px',
         paddingRight: '20px',
         overflow: 'scroll',
-        background: '#2c2f33',
-        border: '2px solid green',
+        backgroundImage: `url(${discBackgroundImg})`,
     }
 
     const liStyle = {

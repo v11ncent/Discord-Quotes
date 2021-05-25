@@ -17,8 +17,8 @@ function Quote({quote, person, date, avatarUrl}) {
     const imgContainerStyle = {
         gridArea: 'avatar',
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
         height: '100%',
         width: '100%', 
     }
@@ -32,19 +32,24 @@ function Quote({quote, person, date, avatarUrl}) {
         border: '2px solid white',
         margin: '0',
         padding: '0',
+        borderRadius: '20px',
+        background: '#2c2f33',
+        padding: '1% 1% 1% 1%',
     }
 
     const personContainerStyle = {
         gridArea: 'person',
         display: 'flex',
         justifyContent: 'flex-start',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         height: '100%',
         width: '100%',
     }
 
     const dateContainerStyle = {
         gridArea: 'date',
+        display: 'flex',
+        alignItems: 'center',
         height: '100%',
         width: '100%',
     }
@@ -53,21 +58,36 @@ function Quote({quote, person, date, avatarUrl}) {
         width: '50%',
         height: '70%',
         borderRadius: '50%',
-        border: '3px solid black',
+        border: '3px solid white',
+        background: '#2c2f33',
+        boxShadow: '5px 5px #888888',
     }
 
     const quoteStyle = {
         height: '100%',
+        width: '100%',
         overflow: 'scroll',
         fontSize: '2rem',
+        fontFamily: 'Whitney',
+        fontWeight: 'bold',
+        color: 'white',
+        textShadow: '1.5px 1.5px #738adb',
     }
 
     const personStyle = {
         fontSize: '2.5rem',
+        fontFamily: 'Whitney',
+        fontWeight: 'bold',
+        color: 'white',
+        textShadow: '1.5px 1.5px #738adb',
     }
 
     const dateStyle = {
         fontSize: '2.5rem',
+        fontFamily: 'Whitney',
+        fontWeight: 'bold',
+        color: 'white',
+        textShadow: '1.5px 1.5px #738adb',
     }
 
     // ========================================================================
