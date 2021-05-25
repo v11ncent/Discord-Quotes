@@ -6,19 +6,18 @@ function Quote({quote, person, date, avatarUrl}) {
     const gridContainerStyle = {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr 1fr',
-        gridTemplateRows: '1fr 1fr 1fr',
+        gridTemplateRows: '50px 1fr 1fr',
         gridTemplateAreas: `'avatar person date date'
                             'avatar quote quote quote'
                             'avatar quote quote quote'`,                      
         width: '100%',
-        height: '100%',
     }
 
     const imgContainerStyle = {
         gridArea: 'avatar',
         display: 'flex',
         justifyContent: 'flex-start',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         height: '100%',
         width: '100%', 
     }
@@ -28,13 +27,13 @@ function Quote({quote, person, date, avatarUrl}) {
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        height: '100%',
-        border: '2px solid white',
+        minHeight: '100%',
         margin: '0',
         padding: '0',
         borderRadius: '20px',
         background: '#2c2f33',
         padding: '1% 1% 1% 1%',
+        border: '2px solid white',
     }
 
     const personContainerStyle = {
@@ -44,6 +43,7 @@ function Quote({quote, person, date, avatarUrl}) {
         alignItems: 'center',
         height: '100%',
         width: '100%',
+        paddingLeft: '4%',
     }
 
     const dateContainerStyle = {
@@ -52,21 +52,21 @@ function Quote({quote, person, date, avatarUrl}) {
         alignItems: 'center',
         height: '100%',
         width: '100%',
+        justifyContent: 'flex-end',
+        paddingRight: '4%',
     }
 
     const imgStyle = {
-        width: '50%',
-        height: '70%',
+        width: '55%',
         borderRadius: '50%',
         border: '3px solid white',
         background: '#2c2f33',
-        boxShadow: '5px 5px #888888',
+        boxShadow: '2px 2px #888888',
     }
 
     const quoteStyle = {
-        height: '100%',
         width: '100%',
-        overflow: 'scroll',
+        overflowX: 'scroll',
         fontSize: '2rem',
         fontFamily: 'Whitney',
         fontWeight: 'bold',
@@ -75,7 +75,7 @@ function Quote({quote, person, date, avatarUrl}) {
     }
 
     const personStyle = {
-        fontSize: '2.5rem',
+        fontSize: '2rem',
         fontFamily: 'Whitney',
         fontWeight: 'bold',
         color: 'white',
@@ -83,7 +83,7 @@ function Quote({quote, person, date, avatarUrl}) {
     }
 
     const dateStyle = {
-        fontSize: '2.5rem',
+        fontSize: '2rem',
         fontFamily: 'Whitney',
         fontWeight: 'bold',
         color: 'white',

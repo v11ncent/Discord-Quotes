@@ -50,7 +50,7 @@ function Pane() {
     const liStyle = {
         listStyle: 'none',
         width: '100%',
-        height: '25%',
+        marginBottom: '5%',
     }
 
 

@@ -12,7 +12,7 @@
 }
 
 :root {
-  background: #141414;
+  background-image: url('./images/mainBackground.jpg');
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -97,7 +97,6 @@
 .link {
   position: relative;
   top: .01vh;
-
   font-family: 'Antonio', sans-serif;
   background-color: transparent;
   text-decoration: none;
