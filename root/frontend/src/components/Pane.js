@@ -19,7 +19,7 @@ function Pane() {
     // since useEffect does not use async to prevent race conditions
     // we make the function inside an async func
     async function getData() {
-        await axios.get('http://localhost:8080/')
+        await axios.get('https://73.199.104.142:8080')
         .then(response => {
             setData(response.data)
             console.log(response);
