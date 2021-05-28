@@ -1,9 +1,9 @@
 const express = require('express');
 const Quote = require('./models/Quote');
 const mongoose = require('mongoose');
-const cors = require('cors'); // https://expressjs.com/en/resources/middleware/cors.html
 
-mongoose.connect('',
+
+mongoose.connect('mongodb+srv://vince:4T8yNWkNI4Omoi5I@quotes.k39re.mongodb.net/quotes?retryWrites=true&w=majority',
                 { useNewUrlParser: true, useUnifiedTopology: true })
 // primer on Router object 
 // https://levelup.gitconnected.com/guide-to-the-express-router-object-multiple-requests-and-middleware-9d5c99b2ade6
@@ -35,8 +35,8 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.get('/', cors(), async (req, res) => {
-    console.log('Got request at url \'localhost:8080/\'');
+router.get('/', async (req, res) => {
+    console.log(`Got request at url \'${req.originalUrl}/\'`);
     // pass it an empty {} filter so that it finds all
     // can filter out person by using {'person': vince}
     await Quote.find({}, (err, result) => {

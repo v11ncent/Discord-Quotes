@@ -2,7 +2,6 @@
 // https://zaiste.net/posts/nodejs-child-process-spawn-exec-fork-async-await/
 
 const { spawn } = require('child_process');
-const { clear } = require('console');
 
 function server() {
     const serverProc = spawn('node', ['server.js']);

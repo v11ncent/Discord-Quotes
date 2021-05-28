@@ -110,4 +110,4 @@ async def send_data(data):
             return await resp.text()
     
 # discord bot token
-client.run('')
+client.run('ODMwMzIxNDYzNzk3MzUwNDEx.YHE_Hw.PazpYbGRERMVMRUelknLFZiNQBs')
