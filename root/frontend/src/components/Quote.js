@@ -1,4 +1,5 @@
 import React from 'react';
+import defaultImg from '../images/default-image.jpg';
 
 function Quote({quote, person, date, avatarUrl}) {
     // STYLES
@@ -58,8 +59,8 @@ function Quote({quote, person, date, avatarUrl}) {
 
     const imgStyle = {
         width: '55%',
+        height: 'auto',
         borderRadius: '50%',
-        border: '3px solid white',
         background: '#2c2f33',
         boxShadow: '2px 2px #888888',
     }
@@ -67,7 +68,7 @@ function Quote({quote, person, date, avatarUrl}) {
     const quoteStyle = {
         width: '100%',
         overflowX: 'scroll',
-        fontSize: '2rem',
+        fontSize: '2vw',
         fontFamily: 'Whitney',
         fontWeight: 'bold',
         color: 'white',
@@ -75,7 +76,7 @@ function Quote({quote, person, date, avatarUrl}) {
     }
 
     const personStyle = {
-        fontSize: '2rem',
+        fontSize: '2vw',
         fontFamily: 'Whitney',
         fontWeight: 'bold',
         color: 'white',
@@ -83,7 +84,7 @@ function Quote({quote, person, date, avatarUrl}) {
     }
 
     const dateStyle = {
-        fontSize: '2rem',
+        fontSize: '2vw',
         fontFamily: 'Whitney',
         fontWeight: 'bold',
         color: 'white',
@@ -96,7 +97,7 @@ function Quote({quote, person, date, avatarUrl}) {
     return (
         <div style={gridContainerStyle}>
             <div style={imgContainerStyle}>
-                <img style={imgStyle} src={avatarUrl} alt='discord avatar image'></img>
+                <img style={imgStyle} src={avatarUrl} onError={(e)=>{e.target.src = defaultImg}} alt='discord avatar image'></img>
             </div>
             <div style={personContainerStyle}>
                 <div style={personStyle}>{`${person}`}</div>

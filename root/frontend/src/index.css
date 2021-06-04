@@ -12,7 +12,7 @@
 }
 
 :root {
-  background-image: url('./images/mainBackground.jpg');
+  background-image: url('./images/main-background.jpg');
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -82,7 +82,7 @@
   position: relative;
   bottom: 5%;
   color: white;
-  font-size: 400%;
+  font-size: 4vw;
   letter-spacing: 0.8vw;
 }
 
@@ -101,7 +101,7 @@
   background-color: transparent;
   text-decoration: none;
   color: white;
-  text-shadow: 1.5px 1.5px #738adb;
+  text-shadow: 1px 1px #738adb;
 }
 
 .disable-scroll::-webkit-scrollbar {
