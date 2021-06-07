@@ -7,7 +7,7 @@ function Quote({quote, person, date, avatarUrl}) {
     const gridContainerStyle = {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr 1fr',
-        gridTemplateRows: '50px 1fr 1fr',
+        gridTemplateRows: '2.5vw 1fr 1fr',
         gridTemplateAreas: `'avatar person date date'
                             'avatar quote quote quote'
                             'avatar quote quote quote'`,                      
@@ -17,7 +17,7 @@ function Quote({quote, person, date, avatarUrl}) {
     const imgContainerStyle = {
         gridArea: 'avatar',
         display: 'flex',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'flex-start',
         height: '100%',
         width: '100%', 
@@ -28,21 +28,19 @@ function Quote({quote, person, date, avatarUrl}) {
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        minHeight: '100%',
+        height: '100%',
         margin: '0',
-        padding: '0',
         borderRadius: '20px',
         background: '#2c2f33',
-        padding: '1% 1% 1% 1%',
-        border: '2px solid white',
+        padding: '1% 1.5vh 1% 1.5vh',
+        border: '1px solid white',
     }
 
     const personContainerStyle = {
         gridArea: 'person',
         display: 'flex',
         justifyContent: 'flex-start',
-        alignItems: 'center',
-        height: '100%',
+        alignItems: 'flex-start',
         width: '100%',
         paddingLeft: '4%',
     }
@@ -50,45 +48,42 @@ function Quote({quote, person, date, avatarUrl}) {
     const dateContainerStyle = {
         gridArea: 'date',
         display: 'flex',
-        alignItems: 'center',
-        height: '100%',
         width: '100%',
         justifyContent: 'flex-end',
+        alignItems: 'flex-start',
         paddingRight: '4%',
     }
 
     const imgStyle = {
-        width: '55%',
+        width: '45%',
         height: 'auto',
         borderRadius: '50%',
         background: '#2c2f33',
-        boxShadow: '2px 2px #888888',
+        border: '1px solid white',
+        boxShadow: '0px 0px 3px white inset',
     }
 
     const quoteStyle = {
         width: '100%',
         overflowX: 'scroll',
-        fontSize: '2vw',
+        fontSize: '1.75vw',
         fontFamily: 'Whitney',
         fontWeight: 'bold',
         color: 'white',
-        textShadow: '1.5px 1.5px #738adb',
     }
 
     const personStyle = {
-        fontSize: '2vw',
+        fontSize: '1.75vw',
         fontFamily: 'Whitney',
         fontWeight: 'bold',
         color: 'white',
-        textShadow: '1.5px 1.5px #738adb',
     }
 
     const dateStyle = {
-        fontSize: '2vw',
+        fontSize: '1.75vw',
         fontFamily: 'Whitney',
         fontWeight: 'bold',
         color: 'white',
-        textShadow: '1.5px 1.5px #738adb',
     }
 
     // ========================================================================
